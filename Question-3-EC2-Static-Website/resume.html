@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshit Parmar - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-info a:hover {
+            opacity: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .summary {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .job, .education-item {
+            margin-bottom: 25px;
+        }
+        
+        .job h3, .education-item h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .job .job-title, .education-item .degree {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .job .company, .education-item .school {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .date {
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        .job ul {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        
+        .job li {
+            margin-bottom: 5px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .skill-category h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            padding: 3px 0;
+        }
+        
+        .skill-category li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Harshit Parmar</h1>
+            <p>Cloud Engineer | AWS Specialist | DevOps Enthusiast</p>
+            <div class="contact-info">
+                <a href="mailto:harshit@example.com">📧 harshit@example.com</a>
+                <a href="tel:+1234567890">📱 +91 123-456-7890</a>
+                <a href="https://linkedin.com/in/harshitparmar" target="_blank">🔗 LinkedIn</a>
+                <a href="https://github.com/harshit240205" target="_blank">💻 GitHub</a>
+            </div>
+        </header>
+        
+        <div class="content">
+            <section class="summary-section">
+                <h2>Professional Summary</h2>
+                <p class="summary">
+                    Passionate Cloud Engineer with expertise in AWS infrastructure, Infrastructure as Code (Terraform), 
+                    and DevOps practices. Experienced in designing and deploying scalable, highly available cloud 
+                    architectures. Strong problem-solving skills with a focus on automation and security best practices.
+                </p>
+            </section>
+            
+            <section class="experience-section">
+                <h2>Work Experience</h2>
+                
+                <div class="job">
+                    <div class="job-title">Cloud Engineer</div>
+                    <div class="company">Tech Solutions Inc.</div>
+                    <div class="date">January 2023 - Present</div>
+                    <ul>
+                        <li>Designed and implemented highly available AWS infrastructure serving 10,000+ users</li>
+                        <li>Automated infrastructure deployment using Terraform, reducing deployment time by 60%</li>
+                        <li>Configured Auto Scaling Groups and Application Load Balancers for high availability</li>
+                        <li>Implemented security best practices including VPC isolation, security groups, and IAM policies</li>
+                        <li>Set up CI/CD pipelines using AWS CodePipeline and GitHub Actions</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-title">Junior DevOps Engineer</div>
+                    <div class="company">Digital Innovations Ltd.</div>
+                    <div class="date">June 2021 - December 2022</div>
+                    <ul>
+                        <li>Managed EC2 instances, RDS databases, and S3 storage solutions</li>
+                        <li>Monitored infrastructure using CloudWatch and configured automated alerts</li>
+                        <li>Assisted in migrating on-premise applications to AWS cloud</li>
+                        <li>Created documentation for infrastructure setup and maintenance procedures</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="education-section">
+                <h2>Education</h2>
+                
+                <div class="education-item">
+                    <div class="degree">Bachelor of Technology in Computer Science</div>
+                    <div class="school">XYZ University</div>
+                    <div class="date">2017 - 2021</div>
+                </div>
+            </section>
+            
+            <section class="skills-section">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Cloud Platforms</h4>
+                        <ul>
+                            <li>AWS (EC2, VPC, ALB, ASG)</li>
+                            <li>S3, RDS, CloudWatch</li>
+                            <li>IAM, Route 53</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Infrastructure as Code</h4>
+                        <ul>
+                            <li>Terraform</li>
+                            <li>CloudFormation</li>
+                            <li>Ansible</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>DevOps Tools</h4>
+                        <ul>
+                            <li>Git / GitHub</li>
+                            <li>Docker</li>
+                            <li>CI/CD Pipelines</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Web Technologies</h4>
+                        <ul>
+                            <li>Nginx / Apache</li>
+                            <li>HTML/CSS</li>
+                            <li>Linux Administration</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="certifications-section">
+                <h2>Certifications & Achievements</h2>
+                <div>
+                    <span class="badge">AWS Certified Solutions Architect - Associate</span>
+                    <span class="badge">Terraform Associate</span>
+                    <span class="badge">Linux Foundation Certified</span>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>🚀 Hosted on AWS EC2 with Nginx | Built with ❤️ using Infrastructure as Code</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">
+                © 2025 Harshit Parmar | This resume is hosted on a secure, hardened EC2 instance
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
