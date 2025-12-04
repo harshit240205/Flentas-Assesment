@@ -1,4 +1,4 @@
-# Configure AWS Provider
+
 terraform {
   required_providers {
     aws = {
@@ -13,7 +13,7 @@ provider "aws" {
   region = var.region
 }
 
-# Data source for latest Amazon Linux 2 AMI
+
 data "aws_ami" "amazon_linux_2" {
   most_recent = true
   owners      = ["amazon"]
@@ -29,9 +29,7 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
-# ========================================
-# NETWORKING
-# ========================================
+# Networking
 
 # Create VPC
 resource "aws_vpc" "main" {
@@ -53,7 +51,7 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-# Create Public Subnet
+
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet_cidr
@@ -66,7 +64,7 @@ resource "aws_subnet" "public" {
   }
 }
 
-# Create Route Table
+
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
@@ -80,15 +78,15 @@ resource "aws_route_table" "public" {
   }
 }
 
-# Associate Route Table with Subnet
+
 resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public.id
   route_table_id = aws_route_table.public.id
 }
 
-# ========================================
+
 # SECURITY GROUP
-# ========================================
+
 
 # Security Group for Web Server
 resource "aws_security_group" "web_server" {
@@ -105,7 +103,7 @@ resource "aws_security_group" "web_server" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # SSH access from your IP only (SECURITY HARDENING)
+  
   ingress {
     description = "SSH from my IP only"
     from_port   = 22
@@ -114,7 +112,7 @@ resource "aws_security_group" "web_server" {
     cidr_blocks = [var.my_ip]
   }
 
-  # Allow all outbound traffic
+  
   egress {
     description = "Allow all outbound traffic"
     from_port   = 0
@@ -128,9 +126,9 @@ resource "aws_security_group" "web_server" {
   }
 }
 
-# ========================================
+
 # EC2 INSTANCE
-# ========================================
+
 
 # EC2 Instance for Web Server
 resource "aws_instance" "web_server" {
