@@ -1,16 +1,16 @@
 #!/bin/bash
-# Update system packages
+
 yum update -y
 
-# Install Apache web server
+
 yum install -y httpd
 
-# Get instance metadata
+
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 AVAILABILITY_ZONE=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
 PRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
 
-# Create HTML page
+
 cat <<EOF > /var/www/html/index.html
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +57,7 @@ cat <<EOF > /var/www/html/index.html
 </head>
 <body>
     <div class="container">
-        <h1>🚀 High Availability Demo</h1>
+        <h1> High Availability Demo</h1>
         <div class="info-box">
             <div class="label">Instance ID:</div>
             <div class="value">$INSTANCE_ID</div>
@@ -72,7 +72,7 @@ cat <<EOF > /var/www/html/index.html
         </div>
         <div class="info-box">
             <div class="label">Status:</div>
-            <div class="value">✅ Running & Healthy</div>
+            <div class="value"> Running & Healthy</div>
         </div>
         <p style="text-align: center; margin-top: 30px; font-size: 0.9em;">
             Refresh this page to see different instances (load balancing in action!)
