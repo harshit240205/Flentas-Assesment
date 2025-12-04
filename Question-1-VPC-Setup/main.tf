@@ -1,4 +1,4 @@
-# Configure AWS Provider
+
 terraform {
   required_providers {
     aws = {
@@ -13,7 +13,7 @@ provider "aws" {
   region = var.region
 }
 
-# Create VPC
+
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
@@ -24,7 +24,6 @@ resource "aws_vpc" "main" {
   }
 }
 
-# Create Internet Gateway
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
@@ -33,7 +32,7 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-# Create Public Subnets
+
 resource "aws_subnet" "public" {
   count                   = length(var.public_subnet_cidrs)
   vpc_id                  = aws_vpc.main.id
@@ -47,7 +46,7 @@ resource "aws_subnet" "public" {
   }
 }
 
-# Create Private Subnets
+
 resource "aws_subnet" "private" {
   count             = length(var.private_subnet_cidrs)
   vpc_id            = aws_vpc.main.id
@@ -60,7 +59,7 @@ resource "aws_subnet" "private" {
   }
 }
 
-# Allocate Elastic IP for NAT Gateway
+
 resource "aws_eip" "nat" {
   domain = "vpc"
 
@@ -71,7 +70,7 @@ resource "aws_eip" "nat" {
   depends_on = [aws_internet_gateway.main]
 }
 
-# Create NAT Gateway in first public subnet
+
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
@@ -83,7 +82,7 @@ resource "aws_nat_gateway" "main" {
   depends_on = [aws_internet_gateway.main]
 }
 
-# Create Public Route Table
+
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
@@ -97,14 +96,14 @@ resource "aws_route_table" "public" {
   }
 }
 
-# Associate Public Subnets with Public Route Table
+
 resource "aws_route_table_association" "public" {
   count          = length(aws_subnet.public)
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
 }
 
-# Create Private Route Table
+
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
@@ -118,7 +117,7 @@ resource "aws_route_table" "private" {
   }
 }
 
-# Associate Private Subnets with Private Route Table
+
 resource "aws_route_table_association" "private" {
   count          = length(aws_subnet.private)
   subnet_id      = aws_subnet.private[count.index].id
