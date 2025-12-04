@@ -1,4 +1,4 @@
-# Configure AWS Provider
+
 terraform {
   required_providers {
     aws = {
@@ -13,7 +13,7 @@ provider "aws" {
   region = var.region
 }
 
-# Data source for latest Amazon Linux 2 AMI
+
 data "aws_ami" "amazon_linux_2" {
   most_recent = true
   owners      = ["amazon"]
@@ -29,9 +29,9 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
-# ========================================
+
 # NETWORKING RESOURCES
-# ========================================
+
 
 # Create VPC
 resource "aws_vpc" "main" {
@@ -44,7 +44,7 @@ resource "aws_vpc" "main" {
   }
 }
 
-# Create Internet Gateway
+
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
@@ -53,7 +53,7 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-# Create Public Subnets
+
 resource "aws_subnet" "public" {
   count                   = length(var.public_subnet_cidrs)
   vpc_id                  = aws_vpc.main.id
@@ -67,7 +67,7 @@ resource "aws_subnet" "public" {
   }
 }
 
-# Create Private Subnets
+
 resource "aws_subnet" "private" {
   count             = length(var.private_subnet_cidrs)
   vpc_id            = aws_vpc.main.id
@@ -80,7 +80,7 @@ resource "aws_subnet" "private" {
   }
 }
 
-# Allocate Elastic IP for NAT Gateway
+
 resource "aws_eip" "nat" {
   domain = "vpc"
 
@@ -91,7 +91,7 @@ resource "aws_eip" "nat" {
   depends_on = [aws_internet_gateway.main]
 }
 
-# Create NAT Gateway
+
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
@@ -103,7 +103,7 @@ resource "aws_nat_gateway" "main" {
   depends_on = [aws_internet_gateway.main]
 }
 
-# Create Public Route Table
+
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
